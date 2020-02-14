@@ -4,8 +4,10 @@ Test Case Migrator Plus tool allows test related artifacts, present in Excel and
 
 **For more details: https://archive.codeplex.com/?p=tcmimport**
 
-1. Are you looking for a tool to upload all the test cases to TFS 2017, 2018, 2019 and Azure DEVOps? 
-2. Is Test case Migration tool downloaded from Codeplex (or codeplex archives) is not working?
+1. Can not run existing TCM import EXE
+2. No use of this patch: https://tcmimport.codeplex.com/SourceControl/list/patches. 
+3. Are you looking for a tool to upload all the test cases to TFS 2017, 2018, 2019 and Azure DEVOps? 
+4. Is Test case Migration tool downloaded from Codeplex (or codeplex archives) is not working?
 
 **_Do not worry, here you go latest, tested and working binaries are here [TCM Plus](https://github.com/premboyapati/Test-Case-Migrator-Plus/tree/master/Binaries) to rescue you._**
 ***
