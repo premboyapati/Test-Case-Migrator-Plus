@@ -1,4 +1,3 @@
-#Test Case Migrator Plus
 
 _No changes to the license, Microsoft public license._
 
