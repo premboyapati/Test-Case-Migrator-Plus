@@ -19,19 +19,19 @@ Test Case Migrator Plus tool allows test related artifacts, present in Excel and
 ***
 
 # Story behind bringing this code from Codeplex to GitHub
-QA team in my company always uses Test case migrator tool to import test cases from Excel. There was no issue of using TCM import tool when my company using TFS 2010/2012.
+QA team in my company always uses **Test case migrator tool** to import test cases from _Excel to TFS_. It was a _perfect tool_ for our QA team to load test case to TFS when my company using TFS 2010/2012.
 
-TCM import tool suddenly **stopped** running when my company recently moved to TFS 2017 and then moved Azure Devops. QA team was trying to resolve the issue themselves, talking to people in differen Microsoft/other forums. They spent months but no luck. And also they were waiting for Microosft release new version which works with TFS 2017+
+TCM import tool suddenly **stopped** working when my company upgraded to Azure Devops. QA team was trying to resolve the issue themselves, talking to people in Microsoft/other forums. They **spent** months but **no luck**. And also they were waiting for **Microsoft** (_My team told me Microsoft is still working on upgrading this tool_) to release new version which works with TFS 2017+.
 
 As a last hope they came to me asking help to upgrade this TCM import tool to make it work with Azure DEVOps.
 
-I wanted to help them by sharing updated binaries by downloading patches and sourcode from codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/"
+I wanted to help them by **sharing **updated binaries by downloading patches and source code from Codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/"
 
-But no luck with the above Url, it always redirects archives, that is when I decided to upgrade the source code to work with .Net framework 4.6.1.
+But **no luck** for me with the above Url, it always **redirects **to archives folder, that is when I decided to **upgrade **the source code using **.Net framework 4.6.1** to make it to work with **TFS 2017+.**
 
-After upgrading TCM import source code with .Net4.6.1, build is not compiled and got 456 compilation errors. To fix all these issues, I modified code and took almost half a day to make it work.
+After upgrading TCM import source code with .Net4.6.1, build is **not **compiled and got **400+ **compilation errors. To fix all these issues, I **modified **code, code changes took almost _half a day_ to make it work.
 
-Now, my team and other QA teams in my company are pretty happy with this updated binaries. And that's when my team asked me to upload this binaries and source code to GitHub to share with the QA world to use it in your day to day job.
+Now, my team and other QA teams in my company are pretty happy (_I would say there are on cloud nine :)_ ) with this updated binaries. And that's when my team asked me to u_**pload this binaries and source code**_ to GitHub to share with the **QA world** to use it in your day to day job.
 
 Please [downlaod](https://github.com/premboyapati/Test-Case-Migrator-Plus/tree/master/Binaries) the binaries and use the tool.
 
