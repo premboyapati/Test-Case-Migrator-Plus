@@ -2,6 +2,8 @@ _No changes to the license, Microsoft public license._
 
 Test Case Migrator Plus tool allows test related artifacts, present in Excel and MHT/Word formats, to be imported into Team Foundation Server. It works with both _Visual studio 2017, Visual studio 2019; and TFS 2017, TFS 2018 and Azure DevOps Server 2019.1 & 2019.1_
 
+**For more details: https://archive.codeplex.com/?p=tcmimport**
+
 1. Are you looking for a tool to upload all the test cases to TFS 2017, 2018, 2019 and Azure DEVOps? 
 2. Is Test case Migration tool downloaded from Codeplex (or codeplex archives) is not working?
 
@@ -9,7 +11,9 @@ Test Case Migrator Plus tool allows test related artifacts, present in Excel and
 ***
 
 ### Prerequisites:
- * .Net framework 4.6.1 or VS 2017 or more.
+ * .Net framework 4.6.1 or 
+ * VS 2017 or 
+ * VS 2019.
 ***
 
 # Story behind bringing this code from Codeplex to GitHub:
