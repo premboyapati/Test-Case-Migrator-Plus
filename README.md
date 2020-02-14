@@ -29,4 +29,4 @@ Now, my team and other QA teams in my company are pretty happy with this updated
 
 Please [downlaod](https://github.com/premboyapati/Test-Case-Migrator-Plus/tree/master/Binaries) the binaries and use the tool.
 
-_I or my team or GitHub or Microsoft is not responsible for any issues if you face while using this product.You are sole responsible in using this product. My role ends in getting the code from Codeplex and converting it to make it work with TFS 2017+ _
+_I or my team or GitHub or Microsoft is not responsible for any issues if you face while using this product.You are sole responsible in using this product. My role ends in getting the code from Codeplex and converting it to make it work with TFS 2017+_
