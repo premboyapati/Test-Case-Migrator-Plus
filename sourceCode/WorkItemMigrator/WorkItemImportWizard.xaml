@@ -1,0 +1,308 @@
+﻿<Window x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.WorkItemImportWizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+        x:ClassModifier="internal"
+        Title="{Binding Title}"
+        Background="{DynamicResource WizardBackgroundColor}"
+        ResizeMode="CanMinimize"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        PreviewMouseDown="Window_PreviewMouseDown"
+        FocusableChanged="Window_FocusableChanged"
+        StateChanged="Window_StateChanged"
+        Height="600" 
+        Closing="Window_Closing"
+        Width="750">
+    <Window.Resources>
+        <!-- Converters -->
+        <WorkItemMigrator:WizardPartToVisualConverter x:Key="WizardPartToVisualConverter" />
+        <WorkItemMigrator:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+        <WorkItemMigrator:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <WorkItemMigrator:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <WorkItemMigrator:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+
+        <Style x:Key="NavigationButtonStyle"
+               TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="7" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Name="Border"
+                                CornerRadius="0"
+                                Margin="0"
+                                BorderThickness="0,0,1,0"
+                                Background="{DynamicResource NavigationPanelControlBackgroundColor}"
+                                BorderBrush="{DynamicResource WizardBorderBrush}">
+                            <Border BorderBrush="Transparent"
+                                    BorderThickness="0,0.6,0,0.6"
+                                    Name="MouseOverBorder">
+                                <Border BorderThickness="0,0.1,0,0.1"
+                                        Padding="3"
+                                        Name="InnerBorder"
+                                        BorderBrush="{DynamicResource WizardBorderGradientBrush}">
+                                    <TextBlock Text="{Binding Header}"
+                                               FontSize="13"
+                                               TextTrimming="CharacterEllipsis"
+                                               ToolTip="{Binding Header}"
+                                               Margin="8,4,2,2">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="FontWeight" Value="Normal" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CanShow}"
+                                                                 Value="False">
+                                                        <Setter Property="Foreground" Value="#FFC0C0C0" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Border>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsActiveWizardPart}" 
+                                        Value="True">
+                                <Setter TargetName="Border"
+                                        Property="Background"
+                                        Value="{DynamicResource WizardPageBackgroundColor}" />
+                                <Setter TargetName="Border"
+                                        Property="BorderThickness"
+                                        Value="2,1,0,1" />
+                                <Setter TargetName="InnerBorder"
+                                        Property="BorderThickness"
+                                        Value="0" />
+                                <Setter TargetName="Border"
+                                        Property="CornerRadius"
+                                        Value="3,3,0,3" />
+                                <Setter TargetName="Border"
+                                        Property="Margin"
+                                        Value="-3,0,0,0" />
+                            </DataTrigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}"
+                                               Value="True" />
+                                    <Condition Binding="{Binding IsActiveWizardPart}"
+                                               Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="MouseOverBorder"
+                                        Property="BorderBrush"
+                                        Value="{DynamicResource WizardBorderBrush}" />
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="WizardNavigationPanelItemTemplate">
+            <Button x:Name="WizardNavigationButton"
+                    Style="{StaticResource NavigationButtonStyle}"
+                    IsEnabled="{Binding CanShow}"
+                    Click="WizardNavigationButton_Click" />
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                            Margin="2,1,0,0"
+                            BorderBrush="{DynamicResource WizardPageOuterBorderBrush}"
+                            BorderThickness="0,4,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ItemsControl Grid.Row="0"
+                                          ItemsSource="{Binding WizardParts}"
+                                          ItemTemplate="{StaticResource WizardNavigationPanelItemTemplate}" />
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0"
+                                        BorderBrush="{DynamicResource WizardBorderBrush}"
+                                        BorderThickness="0,0,1,0">
+                                <Grid>
+                                    <Polygon Points="0,0 0,4 1,5 2,6 137,50 143,50 143,0"
+                                                 Fill="{DynamicResource NavigationPanelControlBackgroundColor}" />
+                                    <Polygon Points="137,50 138,51 139,52 139,52.5 139,228 143,228 143,50"
+                                                 Fill="{DynamicResource WizardPageOuterBorderBrush}" />
+                                </Grid>
+                            </Border>
+
+                            <Polygon Grid.Row="1"
+                                         Points="139,0 139,3 140,4 140,5 144,5 144,0"
+                                         Fill="{DynamicResource WizardPageOuterBorderBrush}" />
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Column="1"
+                            Margin="0,1,0,0"
+                            BorderBrush="{DynamicResource WizardPageOuterBorderBrush}"
+                            BorderThickness="0,4,4,4">
+                    <Border BorderBrush="{DynamicResource WizardBorderBrush}"
+                                BorderThickness="0,1,1,1"
+                                Background="{DynamicResource WizardPageBackgroundColor}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0"
+                                            VerticalAlignment="Top"
+                                            Margin="7,8,10,0">
+                                <TextBlock Text="{Binding WizardPart.Header, Mode=OneWay}"
+                                               FontWeight="Bold"
+                                               FontSize="16"/>
+                                <TextBlock Text="{Binding WizardPart.Description}" 
+                                               Margin="10,5,0,5"
+                                               Visibility="{Binding WizardPart.Description, Converter={StaticResource StringToVisibilityConverter}}"
+                                               TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <Separator Grid.Row="1"
+                                           VerticalAlignment="Top" 
+                                           Margin="7,7,7,0"/>
+
+                            <ContentPresenter Grid.Row="2"
+                                                  Margin="11,5,11,5"
+                                                  Content="{Binding WizardPart, Converter={StaticResource WizardPartToVisualConverter}}"/>
+
+                            <StatusBar Grid.Row="3"
+                                           Height="24"
+                                           BorderThickness="0,1,0,0"
+                                           BorderBrush="{DynamicResource StatusBorderColor}"
+                                           Background="{DynamicResource StatusBackgroundColor}">
+                                <Grid Visibility="{Binding WizardPart.Warning, Converter={StaticResource StringToVisibilityConverter}}"
+                                          VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Height="16"
+                                               Width="16"
+                                               Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Margin="3,0,3,0"
+                                               Source="{DynamicResource Warning_16}" />
+                                    <TextBlock Text="{Binding WizardPart.Warning, Mode=TwoWay}"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   Grid.Column="1" />
+                                </Grid>
+                            </StatusBar>
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1"
+                  VerticalAlignment="Bottom"
+                  Margin="7,14,7,7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" 
+                        x:Uid="HelpButton"
+                        Style="{DynamicResource NavigationButton}"
+                        Name="HelpButton" 
+                        Content="Help"
+                        Click="HelpButton_Click" />
+
+            <StackPanel Grid.Column="1"
+                            HorizontalAlignment="Right" 
+                            Orientation="Horizontal">
+
+                <Button Name="BackButton" 
+                            x:Uid="BackButton"
+                            Content="&lt; _Back" 
+                            Style="{DynamicResource NavigationButton}"
+                            IsEnabled="{Binding WizardPart.CanBack}"
+                            Visibility="{Binding IsSummaryPage, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                            Click="BackButton_Click" />
+
+                <Button Name="NextButton" 
+                            x:Uid="NextButton"
+                            Content="_Next &gt;"
+                            Style="{DynamicResource NavigationButton}"
+                            Visibility="{Binding IsConfirmVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            IsEnabled="{Binding WizardPart.CanNext}"
+                            Click="NextButton_Click" />
+
+                <Button Name="ConfirmButton"
+                            x:Uid="ConfirmButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Content="_Confirm &gt;&gt;"
+                            Visibility="{Binding IsConfirmVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            IsEnabled="{Binding WizardInfo.CanConfirm}"
+                            Click="ConfirmButton_Click" />
+
+                <Button Name="SaveandExitButton" 
+                            x:Uid="SaveandExitButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Content="_Save and exit"
+                            IsEnabled="{Binding CanSave}"
+                            Visibility="{Binding IsConfirmPage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Click="SaveandExitButton_Click" />
+
+                <Button Name="SaveAndMigrateButton" 
+                            x:Uid="SaveAndMigrateButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Content="Save and _migrate"
+                            Visibility="{Binding IsConfirmPage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Click="SaveAndMigrateButton_Click" />
+
+                <Button Name="StartAgainButton" 
+                            x:Uid="StartAgainButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Content="S_tart again"
+                            IsEnabled="{Binding CanStartAgain}"
+                            Visibility="{Binding IsSummaryPage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Click="StartAgainButton_Click" />
+
+                <Button Name="CloseButton"
+                            x:Uid="CloseButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Content="_Close"
+                            Visibility="{Binding IsSummaryPage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Click="CloseButton_Click" />
+
+                <Button Name="CancelButton" 
+                            x:Uid="CancelButton"
+                            Style="{DynamicResource NavigationButton}"
+                            Visibility="{Binding IsSummaryPage, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                            Content="_Cancel"
+                            Click="CancelButton_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

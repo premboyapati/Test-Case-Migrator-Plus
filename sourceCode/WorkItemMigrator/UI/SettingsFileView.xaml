@@ -1,0 +1,62 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.SettingsFileView"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                                 x:ClassModifier="internal">
+    <ContentControl.Resources>
+        <WorkItemMigrator:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </ContentControl.Resources>
+    
+    <Grid Margin="15,20,100,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <RadioButton AutomationProperties.AutomationId="SettingsFileView.NotLoadSettingsRadioButton"
+                     AutomationProperties.Name="NotLoadSettingsRadioButton"
+                     Grid.Row="0"
+                     IsChecked="{Binding ElementName=LoadSettingsRadioButton, Path=IsChecked, Converter={StaticResource InverseBooleanConverter}}"
+                     GroupName="LoadSettingsRadioButtonGroup">
+            <TextBlock x:Uid="NotLoadSettingText"
+                       TextWrapping="Wrap"
+                       Text="Create new settings file" />
+        </RadioButton>
+
+        <RadioButton AutomationProperties.AutomationId="SettingsFileView.LoadSettingsRadioButton"
+                     AutomationProperties.Name="LoadSettingsRadioButton"
+                     Grid.Row="1"
+                     x:Name="LoadSettingsRadioButton"
+                     GroupName="LoadSettingsRadioButtonGroup"
+                     Margin="0,15,0,0"
+                     IsChecked="{Binding LoadSettings}">
+            <TextBlock x:Uid="LoadSettingText"
+                       TextWrapping="Wrap"
+                       Text="Load from an existing settings file:" />
+        </RadioButton>
+                   
+        <Grid Grid.Row="2"
+              IsEnabled="{Binding LoadSettings}"
+              Margin="15,3,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <WorkItemMigrator:WITMigratorTextBox AutomationProperties.AutomationId="SettingsFileView.SettingTextBox"
+                                                 AutomationProperties.Name="SettingTextBox"
+                                                 x:Uid="SettingsFileView.SettingTextBox"
+                                                 Text="{Binding SettingsFilePath}"                             
+                                                 Grid.Column="0"
+                                                 IsRequired="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled}"
+                                                 TextChangeAction="WITMigratorTextBox_TextChangeAction" />
+                     
+          <Button AutomationProperties.AutomationId="SettingsFileView.LoadSettingButton"
+                  AutomationProperties.Name="LoadSettingButton"
+                  Content="_..."
+                  Grid.Column="1"
+                  Click="LoadSettingButton_Click" />
+        </Grid>
+    </Grid>
+</ContentControl>

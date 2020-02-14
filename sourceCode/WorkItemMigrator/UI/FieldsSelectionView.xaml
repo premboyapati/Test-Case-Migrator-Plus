@@ -1,0 +1,170 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.FieldsSelectionView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                x:ClassModifier="internal">
+    <ContentControl.Resources>
+        <Style x:Key="FieldsListBoxItemStyle"
+           TargetType="{x:Type ListBoxItem}">
+            <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        </Style>
+
+        <WorkItemMigrator:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </ContentControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Sample mht/word file for field selection:" />
+
+            <Grid Grid.Row="1"
+                  Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                       Margin="5,0,0,0"
+                       Text="{Binding SourcePath}" />
+                <!-- ==== Browse Button ==== -->
+                <Button Grid.Column="1"
+                        Margin="3,0,0,0"
+                        Content="_..."
+                        Click="MHTFileBrowse_Click" />
+            </Grid>
+            <Grid Grid.Row="2"
+              HorizontalAlignment="Right"
+              Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Height="16"
+                       Width="16"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Margin="0,0,3,0"
+                       Source="{DynamicResource Word_32}" />
+                <TextBlock Grid.Column="1">
+                    <Hyperlink Click="Preview_Click"
+                               IsEnabled="{Binding IsPreviewEnabled}"
+                               AutomationProperties.AutomationId="SelectDataSource.PreviewMHTButton"
+                               AutomationProperties.Name="PreviewMHTButton"
+                               x:Uid="SelectDataSource.PreviewMHTButton">
+                        Preview
+                        <Hyperlink.Style>
+                            <Style TargetType="{x:Type Hyperlink}">
+                                <Setter Property="Foreground" 
+                                        Value="{DynamicResource HyperLinkBrush}" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled"
+                                             Value="false">
+                                        <Setter Property="Foreground"
+                                                Value="Gray" />                                    
+                                    </Trigger>                                
+                                </Style.Triggers>
+                            </Style>
+                        </Hyperlink.Style>
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Field names:"
+                       Grid.Row="0"
+                       Margin="0,5,0,0"
+                       FontWeight="Bold" />
+
+            <ListBox ItemsSource="{Binding Fields}"
+                     SelectionMode="Single"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ItemContainerStyle="{StaticResource FieldsListBoxItemStyle}"
+                     Margin="0,2,0,0"
+                     Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border HorizontalAlignment="Stretch"
+                            BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            SnapsToDevicePixels="true"
+                            Focusable="False">
+                            <Grid Height="25">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                                           TextTrimming="CharacterEllipsis"
+                                           Margin="3,0,0,0"
+                                           ToolTip="{Binding FieldName}"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding FieldName}" />
+                                <Button Content="Delete"
+                                        Grid.Column="1"
+                                        Visibility="{Binding CanDelete, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        x:Name="DeleteFieldNameButton"
+                                        Click="DeleteFieldNameButton_Click" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Grid Grid.Row="2"
+                  IsEnabled="{Binding IsPreviewEnabled}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         x:Name="NewFieldNameInputBox" />
+                <Button x:Uid="AddNewFieldNameButton"
+                        x:Name="AddNewFieldNameButton"
+                        AutomationProperties.AutomationId="AddNewFieldNameButton"
+                        AutomationProperties.Name="AddNewFieldNameButton"
+                        Grid.Column="1"
+                        Margin="3,0,0,0"
+                        Click="AddNewFieldNameButton_Click">
+                    <AccessText Text="_Add field name">
+                        <AccessText.Style>
+                            <Style TargetType="{x:Type AccessText}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled"
+                                                 Value="false">
+                                        <Setter Property="Foreground"
+                                                    Value="Gray" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </AccessText.Style>
+                    </AccessText>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentControl>

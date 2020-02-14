@@ -1,0 +1,265 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.SummaryView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                x:ClassModifier="internal">
+    <ContentControl.Resources>
+
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" 
+                    Value="Blue" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled"
+                        Value="false">
+                    <Setter Property="Foreground"
+                            Value="Gray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type Image}" 
+               x:Key="WizardAction32ImageStyle">
+            <Setter Property="Source" Value="{DynamicResource InProgress_32}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MigrationState}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Warning}">
+                    <Setter Property="Source" Value="{DynamicResource Warning_32}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding MigrationState}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Failed}">
+                    <Setter Property="Source" Value="{DynamicResource Failed_32}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding MigrationState}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Success}">
+                    <Setter Property="Source" Value="{DynamicResource Passed_32}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type Image}" 
+               x:Key="WizardActionImageStyle">
+            <Setter Property="Source" Value="{DynamicResource Pending_16}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding State}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Warning}">
+                    <Setter Property="Source" Value="{DynamicResource Warning_16}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding State}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Failed}">
+                    <Setter Property="Source" Value="{DynamicResource Failed_16}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding State}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Success}">
+                    <Setter Property="Source" Value="{DynamicResource Passed_16}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding State}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.InProgress}">
+                    <Setter Property="Source" Value="{DynamicResource InProgress_16}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding State}"
+                             Value="{x:Static WorkItemMigrator:WizardActionState.Stopped}">
+                    <Setter Property="Source" Value="{DynamicResource Stop_16}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </ContentControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Background="White"
+                BorderBrush="Black"
+                Padding="10"
+                Grid.Row="0"
+                BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Height="32"
+                       Width="32"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource WizardAction32ImageStyle}"
+                       Margin="0,0,3,0" />
+                <TextBlock Text="{Binding MigrationStatus}"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           FontWeight="DemiBold"
+                           Grid.Column="1" />
+                
+                <Grid HorizontalAlignment="Right"
+                      Margin="0,0,10,0"
+                      Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Total:"
+                               x:Uid="TotalRowsLabel" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Margin="6,0,15,0"
+                               Text="{Binding TotalWorkItems}" />
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="3"
+                               Text="Errors:"
+                               x:Uid="ErrorsLabel" />
+                    <TextBlock Grid.Row="0"
+                               Margin="6,0,15,0"
+                               Grid.Column="4">
+                        <Hyperlink Click="Hyperlink_Click"
+                                   x:Name="ErrorLink"
+                                   IsEnabled="{Binding IsReportPublished}">
+                            <TextBlock Text="{Binding FailedWorkItemsCount}" />
+                        </Hyperlink>
+                    </TextBlock>
+                
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Migrated Successfully:"
+                               x:Uid="PassedLabel" />
+                    <TextBlock Grid.Row="1"
+                               Margin="6,0,10,0"
+                               Grid.Column="1">
+                        <Hyperlink Click="Hyperlink_Click"
+                                   x:Name="PassedLink"
+                                   IsEnabled="{Binding IsReportPublished}">
+                            <TextBlock Text="{Binding PassedWorkItemsCount}" />
+                        </Hyperlink>
+                    </TextBlock>
+                    
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="3"
+                               Text="Warning:"
+                               x:Uid="WarningLabel" />
+                    <TextBlock Grid.Row="1"
+                               Margin="6,0,10,0"
+                               Grid.Column="4">
+                        <Hyperlink Click="Hyperlink_Click"
+                                   x:Name="WarningLink"
+                                   IsEnabled="{Binding IsReportPublished}">
+                            <TextBlock Text="{Binding WarningWorkItemsCount}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        
+        <TextBlock x:Uid="WizardActionsDetailsLabel"
+                   Text="Details:"
+                   Margin="0,10,0,0"
+                   Grid.Row="1" />
+        
+        <DataGrid ItemsSource="{Binding WizardActions}"
+                  x:Name="WizardActionsControl"
+                  Margin="0,4,0,0"
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="None"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="25"
+                                        CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="16"
+                               Width="16"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource WizardActionImageStyle}"
+                               Margin="0,0,3,0" />
+                            </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Status}"
+                                    IsReadOnly="True"
+                                    Header="Status"
+                                    Width="60" />
+                <DataGridTextColumn Binding="{Binding Description}"
+                                    IsReadOnly="True"
+                                    Header="Action"
+                                    Width="150" />
+                <DataGridTextColumn Binding="{Binding Message}"
+                                    IsReadOnly="True"
+                                    Header="Message"
+                                    Width="270" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Button x:Name="StopButton"
+                Click="StopButton_Click"
+                HorizontalAlignment="Left"
+                IsEnabled="{Binding IsMigrating}"
+                Grid.Row="3"
+                Margin="0,10,0,0">
+            <TextBlock Text="Stop Migration">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">           
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMigrating}"
+                                     Value="False">
+                                <Setter Property="Foreground"
+                                        Value="Gray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Button>
+        
+        <TextBlock Grid.Row="4"
+                   TextWrapping="Wrap"
+                   Text="Work items which have already been migrated, before the migration was stopped, would not be removed."
+                   Margin="0,5,0,0" />
+
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                   Margin="0,10,0,0">
+            <Hyperlink IsEnabled="{Binding IsReportPublished}"
+                       Click="Hyperlink_Click">
+                View session output log file
+            </Hyperlink>
+            </TextBlock>
+
+            <TextBlock Grid.Row="1"
+                   Margin="0,5,0,0">
+            <Hyperlink IsEnabled="{Binding IsLinksReportPublished}"
+                       Click="ShowLinkingReport_Click">
+                View consolidated report file
+            </Hyperlink>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</ContentControl>

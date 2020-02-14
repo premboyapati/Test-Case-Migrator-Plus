@@ -1,0 +1,117 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.WelcomeView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                x:ClassModifier="internal">
+    <ContentControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" 
+                    Value="13" />
+            <Setter Property="TextWrapping" 
+                    Value="Wrap" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}"
+               x:Key="NormalText"
+               BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Margin" 
+                    Value="5,10,0,0" />
+        </Style>
+
+        <Style x:Key="HeaderStyle"
+               TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Margin" 
+                    Value="5,25,0,0" />
+        </Style>
+
+        <Style x:Key="BulletStyle"
+               TargetType="{x:Type BulletDecorator}">
+            <Setter Property="Margin" 
+                    Value="15,3,0,0" />
+        </Style>
+
+
+    </ContentControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="This wizard enables you to do the following:" 
+                   x:Uid="InfoHeader"
+                       Grid.Row="0"
+                   Style="{StaticResource HeaderStyle}"/>
+
+            <TextBlock Text="1. Migrate work item(s) from an Excel workbook into TFS work item(s). Supported work item types are Test Cases, User Stories/Requirements and Bugs."
+                       Grid.Row="1"
+                   Style="{StaticResource NormalText}"/>
+
+            <TextBlock Text="2. Migrate VS2005/VS2008 manual test cases templates from a Word/MHT document into a TFS test case work item."
+                       Grid.Row="2"
+                   Style="{StaticResource NormalText}"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="You can also save the settings, which capture the following information, for later use:" 
+                       Grid.Row="0"
+                   Style="{StaticResource HeaderStyle}"/>
+
+            <BulletDecorator Style="{StaticResource BulletStyle}"
+                         Grid.Row="2">
+                <BulletDecorator.Bullet>
+                    <TextBlock Text="- " />
+                </BulletDecorator.Bullet>
+                <TextBlock Text="Field mappings" />
+            </BulletDecorator>
+
+            <BulletDecorator Style="{StaticResource BulletStyle}"
+                         Grid.Row="3">
+                <BulletDecorator.Bullet>
+                    <TextBlock Text="- " />
+                </BulletDecorator.Bullet>
+                <TextBlock Text="Data mappings" />
+            </BulletDecorator>
+
+            <BulletDecorator Style="{StaticResource BulletStyle}"
+                         Grid.Row="4">
+                <BulletDecorator.Bullet>
+                    <TextBlock Text="- " />
+                </BulletDecorator.Bullet>
+                <TextBlock Text="Links Mapping" />
+            </BulletDecorator>
+
+            <BulletDecorator Style="{StaticResource BulletStyle}"
+                         Grid.Row="6">
+                <BulletDecorator.Bullet>
+                    <TextBlock Text="- " />
+                </BulletDecorator.Bullet>
+                <TextBlock Text="Miscellaneous settings" />
+            </BulletDecorator>
+        </Grid>
+
+        <TextBlock Text="Check that your MS Office(Excel/Word) is version 2003 or greater."
+                   Grid.Row="2"
+                   Margin ="5,30,0,0" />
+    </Grid>
+</ContentControl>

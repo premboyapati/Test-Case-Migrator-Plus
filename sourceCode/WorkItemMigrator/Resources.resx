@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConfirmSettings_Description" xml:space="preserve">
+    <value>Verify the choices made in wizard and click 'Save and exit' to save the settings file and exit or click 'Save and migrate' to start the migration.</value>
+  </data>
+  <data name="ConfirmSettings_Header" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="MapColumns_Description" xml:space="preserve">
+    <value>Define the field mappings from the source fields to the TFS work item fields.</value>
+  </data>
+  <data name="MapColumns_Header" xml:space="preserve">
+    <value>Field mapping</value>
+  </data>
+  <data name="IgnoreLabel" xml:space="preserve">
+    <value>&lt;Ignore&gt;</value>
+  </data>
+  <data name="MappingsFile_Description" xml:space="preserve">
+    <value>Specify an existing settings file (containing fields mapping, data mapping, links mapping, automation scripts mapping and miscellaneous settings) or create a new settings file.</value>
+  </data>
+  <data name="MappingsFile_Header" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MapValues_Description" xml:space="preserve">
+    <value>Some fields require you to map the data from data source to the allowed values for the destination work item field.</value>
+  </data>
+  <data name="MapValues_Header" xml:space="preserve">
+    <value>Data mapping</value>
+  </data>
+  <data name="MessageFormat" xml:space="preserve">
+    <value>Error:-
+
+Title: {0}
+LikelyCause: {1}
+PotentialSolution: {2}</value>
+  </data>
+  <data name="MigrationProgress_Header" xml:space="preserve">
+    <value>Migrate</value>
+  </data>
+  <data name="MiscSettings_ExcelFlow_Description" xml:space="preserve">
+    <value>Specify how data needs to be read from Source (Excel file) and migrated into the destination (TFS Server).</value>
+  </data>
+  <data name="MiscSettings_Header" xml:space="preserve">
+    <value>Miscellaneous</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectDataSource_Description" xml:space="preserve">
+    <value>Specify the source from which to migrate work item information.</value>
+  </data>
+  <data name="SelectDataSource_Header" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="SelectDestinationServer_Description" xml:space="preserve">
+    <value>Specify the Team Foundation Server and Team Project where you want to create the work items.</value>
+  </data>
+  <data name="SelectDestinationServer_Header" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="SelectServerProject" xml:space="preserve">
+    <value>Select Server and Project</value>
+  </data>
+  <data name="DataSourceInitializationError" xml:space="preserve">
+    <value>Unable to initialize the data source</value>
+  </data>
+  <data name="DataSourceInvalidFile" xml:space="preserve">
+    <value>Invalid data source file</value>
+  </data>
+  <data name="DataSourceInvalidHeaderInfo" xml:space="preserve">
+    <value>Invalid excel header row </value>
+  </data>
+  <data name="PreviewDataSourceError" xml:space="preserve">
+    <value>Unable to preview file: {0}</value>
+  </data>
+  <data name="CancelWizard_MessageTitle" xml:space="preserve">
+    <value>Are you sure you want to exit?</value>
+  </data>
+  <data name="CLISwitch_ExcelRow" xml:space="preserve">
+    <value>The excel sheet's row which is having field names for excel work items.</value>
+  </data>
+  <data name="CLISwitch_InputSettings" xml:space="preserve">
+    <value>The settings file containing column and data mappings and miscellaneous settings.</value>
+  </data>
+  <data name="CLISwitch_Project" xml:space="preserve">
+    <value>The project at server having tcm work items.</value>
+  </data>
+  <data name="CLISwitch_ResultFile" xml:space="preserve">
+    <value>Path of report file that will contain details of work items after the migration of work items from excel to TFS server.</value>
+  </data>
+  <data name="CLISwitch_Server" xml:space="preserve">
+    <value>Destination tfs server where work items have to be migrated.</value>
+  </data>
+  <data name="CLISwitch_SourceFile" xml:space="preserve">
+    <value>Source file path</value>
+  </data>
+  <data name="CLISwitch_WorkItemType" xml:space="preserve">
+    <value>Work Item type at TFS server.</value>
+  </data>
+  <data name="CLISwitch_WorkSheetName" xml:space="preserve">
+    <value>The excel worksheet having excel work items.</value>
+  </data>
+  <data name="CloseMigration_MessageTitle" xml:space="preserve">
+    <value>Are you sure you want to stop the migration?</value>
+  </data>
+  <data name="NoButtonLabel" xml:space="preserve">
+    <value>_No</value>
+  </data>
+  <data name="YesButtonLabel" xml:space="preserve">
+    <value>_Yes</value>
+  </data>
+  <data name="CommandLineUsageMessageTitle" xml:space="preserve">
+    <value>Command Line Usage:-</value>
+  </data>
+  <data name="DataMapping_DataSourceFieldHeader" xml:space="preserve">
+    <value>Data Source Field</value>
+  </data>
+  <data name="DataMapping_DataSourceValueHeader" xml:space="preserve">
+    <value>Data Source Value</value>
+  </data>
+  <data name="Datamapping_NewValueHeader" xml:space="preserve">
+    <value>Destination Value</value>
+  </data>
+  <data name="DataSourceFieldNamesNotFoundErrorLikelyCause" xml:space="preserve">
+    <value>No field names are found in provided data source information.</value>
+  </data>
+  <data name="DataSourceReportFileValidationErrorTitle" xml:space="preserve">
+    <value>Please enter valid output {0} file path</value>
+  </data>
+  <data name="DataSourceNotEnteredErrorLikelyCause" xml:space="preserve">
+    <value>Data source storage information is not provided.</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+  <data name="InputSettingsFileError" xml:space="preserve">
+    <value>Invalid settings file</value>
+  </data>
+  <data name="MandatoryFieldsNotMappedErrorTitle" xml:space="preserve">
+    <value>All mandatory fields are not mapped</value>
+  </data>
+  <data name="MigrateWorkItemsAction_Description" xml:space="preserve">
+    <value>Migrate Work Items</value>
+  </data>
+  <data name="MigrateWorkItemsAction_FailedText" xml:space="preserve">
+    <value>Unable to migrate any work item. Click on error counter for more details</value>
+  </data>
+  <data name="MigrateWorkItemsAction_InProgressText" xml:space="preserve">
+    <value>{0} of {1} is processed</value>
+  </data>
+  <data name="MigrateWorkItemsAction_WarningText" xml:space="preserve">
+    <value>Some of the work items are not able to migrate completely. Click on Error/Warning counter for more details</value>
+  </data>
+  <data name="MigrationInProgressText" xml:space="preserve">
+    <value>The migration is in progress</value>
+  </data>
+  <data name="MigrationSuccessfulText" xml:space="preserve">
+    <value>The work items were successfully migrated to TFS.</value>
+  </data>
+  <data name="ParseDataSourceAction_Description" xml:space="preserve">
+    <value>Parse Data Source</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="PublishReportAction_Description" xml:space="preserve">
+    <value>Publish Report</value>
+  </data>
+  <data name="SaveSettingsAction_Description" xml:space="preserve">
+    <value>Save Settings</value>
+  </data>
+  <data name="SelectServerWatermarkText" xml:space="preserve">
+    <value>Click on "..." to select Server/Project...</value>
+  </data>
+  <data name="ServerConnectionError" xml:space="preserve">
+    <value>Unable to connect to team foundation server.</value>
+  </data>
+  <data name="ServerNotSpecifiedErrorTitle" xml:space="preserve">
+    <value>Server connection could not be established</value>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="TestStepExpectedResultField_HelpText" xml:space="preserve">
+    <value>Expected Result of the Test Step</value>
+  </data>
+  <data name="TestStepTitleField_HelpText" xml:space="preserve">
+    <value>Description of the Test Step</value>
+  </data>
+  <data name="UserInterruptionText" xml:space="preserve">
+    <value>Interrupted By user</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="WarningDataSourceWorkitem_DataMappingIgnoredWarning" xml:space="preserve">
+    <value>FieldName: {0} is ignored in data mapping for value: {1}; So taken the default Value: {2}
+</value>
+  </data>
+  <data name="WarningDataSourceWorkItem_EmptyValueWarning" xml:space="preserve">
+    <value>FieldName: {0} has no value so taken the default Value: {1}
+</value>
+  </data>
+  <data name="WelcomePageHeader" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="OutputXMLFileValidationErrorTitle" xml:space="preserve">
+    <value>Output settings file validation error</value>
+  </data>
+  <data name="CancelButtonLabel" xml:space="preserve">
+    <value>_Cancel</value>
+  </data>
+  <data name="CloseButtonLabel" xml:space="preserve">
+    <value>_Close</value>
+  </data>
+  <data name="ExcelDataSource_InitializationErrorTitle" xml:space="preserve">
+    <value>Unable to initialize the excel data source</value>
+  </data>
+  <data name="ExcelLoadError" xml:space="preserve">
+    <value>Unable to load excel file</value>
+  </data>
+  <data name="OKButtonLabel" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="ColumnMappingPart_CantShowTitle" xml:space="preserve">
+    <value>Unable to initialize Field Mapping</value>
+  </data>
+  <data name="DataSourceFieldNamesNotFoundErrorPotentialSolution" xml:space="preserve">
+    <value>Please provide correct data source Information in 'Source' which contains field names.</value>
+  </data>
+  <data name="DataSourceInvalidFileLikelyCause" xml:space="preserve">
+    <value>The data source file is either empty or the format is incorrect.</value>
+  </data>
+  <data name="DataSourceInvalidFilePotentialSolution" xml:space="preserve">
+    <value>You must provide the correct data source file.</value>
+  </data>
+  <data name="DataSourceInvalidHeaderInfoLikelyCause" xml:space="preserve">
+    <value>Excel header row is not a valid number.</value>
+  </data>
+  <data name="DataSourceInvalidHeaderInfoPotentialSolution" xml:space="preserve">
+    <value>Excel header should be a positive number.</value>
+  </data>
+  <data name="DataSourceNotEnteredErrorPotentialSolution" xml:space="preserve">
+    <value>Please provide data source file and storage information in 'Source' wizard page.</value>
+  </data>
+  <data name="InputSettingsFileErrorLikelyCause" xml:space="preserve">
+    <value>The settings file is either not specified or invalid.</value>
+  </data>
+  <data name="InputSettingsFileErrorPotentialSolution" xml:space="preserve">
+    <value>Please verify that the specified file is a valid settings file generated by Test Case Migrator Plus.</value>
+  </data>
+  <data name="MandatoryFieldsNotMappedErrorLikelyCause" xml:space="preserve">
+    <value>You have missed mapping for one or more mandatory field.</value>
+  </data>
+  <data name="MandatoryFieldsNotMappedErrorPotentialSolution" xml:space="preserve">
+    <value>Please ensure that all mandatory fields are mapped.</value>
+  </data>
+  <data name="MiscSettingsPart_CantShowTitle" xml:space="preserve">
+    <value>Unable to initialize Miscellaneous Settings</value>
+  </data>
+  <data name="OutputXMLFileValidationErrorLikelyCause" xml:space="preserve">
+    <value>Output settings file's name is not in correct format</value>
+  </data>
+  <data name="OutputXMLFileValidationErrorPotentialSolution" xml:space="preserve">
+    <value>Please verify that output settings file is valid xml file name.</value>
+  </data>
+  <data name="PublisReportError" xml:space="preserve">
+    <value>Unable to publish the report</value>
+  </data>
+  <data name="ServerNotSpecifiedErrorLikelyCause" xml:space="preserve">
+    <value>Team foundation server/Team Project Collection is not mentioned.</value>
+  </data>
+  <data name="ServerNotSpecifiedErrorPotentialSolution" xml:space="preserve">
+    <value>Please specify appropriate Team foundation server/Team Project Collection.</value>
+  </data>
+  <data name="SettingsFilePart_CantShowTitle" xml:space="preserve">
+    <value>Unable to initialize Settings File</value>
+  </data>
+  <data name="WizardInitializationError" xml:space="preserve">
+    <value>Initialization error</value>
+  </data>
+  <data name="WizardInitializationErrorLikelyCause" xml:space="preserve">
+    <value>Error in initializing the excel.</value>
+  </data>
+  <data name="WizardInitializationErrorPotentialSolution" xml:space="preserve">
+    <value>Please verify that Microsoft Excel is installed in your system.</value>
+  </data>
+  <data name="WorkItemCreationError" xml:space="preserve">
+    <value>Unable to create work items at TFS server</value>
+  </data>
+  <data name="CLISwitch_UI" xml:space="preserve">
+    <value>Launch Test Case Migrator Plus in UI Mode with specified settings</value>
+  </data>
+  <data name="MiscSettings_InvalidFilePathErrorLikelyCause" xml:space="preserve">
+    <value>Empty file name is found in {0}</value>
+  </data>
+  <data name="MiscSettings_InvalidFilePathErrorPotentialSolution" xml:space="preserve">
+    <value>Please specify correct file name.</value>
+  </data>
+  <data name="MiscSettings_InvalidFilePathErrorTitle" xml:space="preserve">
+    <value>Invalid File Path: {0}</value>
+  </data>
+  <data name="MiscSettings_InvalidReportFileExtension" xml:space="preserve">
+    <value>Invalid Report File Extension</value>
+  </data>
+  <data name="MiscSettings_InvalidReportFileExtensionLikelyCause" xml:space="preserve">
+    <value>Report file is not having Excel extension.</value>
+  </data>
+  <data name="MiscSettings_InvalidReportFileExtensionPotentialSolution" xml:space="preserve">
+    <value>Please specify correct Excel extension.</value>
+  </data>
+  <data name="MiscSettings_InvalidSettingsFileExtension" xml:space="preserve">
+    <value>Invalid Output Settings File Extension</value>
+  </data>
+  <data name="MiscSettings_InvalidSettingsFileExtensionLikelyCause" xml:space="preserve">
+    <value>Output settings file is not having xml extension.</value>
+  </data>
+  <data name="MiscSettings_InvalidSettingsFileExtensionPotentialSolution" xml:space="preserve">
+    <value>Please specify correct xml extension.</value>
+  </data>
+  <data name="SelectPlaceholder" xml:space="preserve">
+    <value>-- Select any value --</value>
+  </data>
+</root>

@@ -1,0 +1,203 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.FieldMappingView"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                                 x:ClassModifier="internal">
+    <ContentControl.Resources>
+        <WorkItemMigrator:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <WorkItemMigrator:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="DSFieldTemplate">
+            <TextBlock Text="{Binding DataSourceField}"
+                       TextTrimming="CharacterEllipsis"
+                       VerticalAlignment="Center"
+                       ToolTip="{Binding DataSourceField}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="Black" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Path=IsSelected}"
+                                         Value="True">
+                                <Setter Property="Foreground" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+        </DataTemplate>
+        <DataTemplate x:Key="WIFieldTemplate">
+            <Grid>
+                <TextBlock Text="{Binding TFSField, Mode=OneWay}"
+                           Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                                                Mode=OneWay,
+                                                Path=IsSelected, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+                           VerticalAlignment="Center" >
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsValidFieldMapping}"
+                                             Value="False">
+                                    <Setter Property="Foreground" Value="Gray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <ComboBox x:Name="WIFieldComboBox"
+                          SelectedValue="{Binding TFSField, Mode=OneWay}"
+                          Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, 
+                                                Mode=OneWay,
+                                                Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                          SelectionChanged="WIFieldComboBox_SelectionChanged"
+                          ItemsSource="{Binding AvailableTFSFields}" />
+            </Grid>
+        </DataTemplate>
+
+    </ContentControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+                  Margin="0,3,0,0">
+                <Separator VerticalAlignment="Center"/>
+                <Border Background="{DynamicResource WizardPageBackgroundColor}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                    <TextBlock Text="Fields mapping"
+                           Padding="3,0,3,0"
+                           VerticalAlignment="Center" />
+                </Border>
+            </Grid>
+
+
+            <Grid Grid.Row="1"
+                  Margin="10,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <DataGrid ItemsSource="{Binding FieldMappingRows}"
+                          x:Name="FieldMappingControl"
+                          AutoGenerateColumns="False"
+                          RowHeight="25"
+                          Margin="0,5,0,0"
+                          GridLinesVisibility="None"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          SelectionMode="Single"
+                          RowStyle="{DynamicResource DataGridRowStyle}"
+                          Grid.Row="0">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn CellTemplate="{StaticResource DSFieldTemplate}"
+                                        Header="Source Field"
+                                        HeaderStyle="{DynamicResource DataGridHeaderTextStyle}"
+                                        Width="*" />
+
+                        <DataGridTemplateColumn Width="*"
+                                        Header="Destination Field"
+                                        HeaderStyle="{DynamicResource DataGridHeaderTextStyle}"
+                                        CellTemplate="{StaticResource WIFieldTemplate}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="1">
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding WizardInfo.DataSourceType}"
+                                     Value="{x:Static WorkItemMigrator:DataSourceType.MHT}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Grid.Row="0"
+                      Margin="0,4,0,0"
+                      x:Name="IsFirstLineTitleCheckBox"
+                      x:Uid="FieldMappingView.IsFirstLineTitleCheckBox"
+                      AutomationProperties.AutomationId="FieldMappingView.IsFirstLineTitleCheckBox"
+                      AutomationProperties.Name="FirstLineTitleCheckBox"
+                      IsChecked="{Binding IsFirstLineTitle}">
+                        Use the first line of mht/word file as title
+                    </CheckBox>
+
+                    <CheckBox Grid.Row="1"
+                      Margin="0,4,0,0"
+                      x:Name="IsFileTitleCheckBox"
+                      x:Uid="FieldMappingView.IsFileTitleCheckBox"
+                      AutomationProperties.AutomationId="FieldMappingView.IsFileTitleCheckBox"
+                      AutomationProperties.Name="IsFileTitleCheckBox"
+                      IsChecked="{Binding IsFileNameTitle}">
+                        Use the file name of mht/word file as title
+                    </CheckBox>
+                </Grid>
+
+                <TextBlock Text="* Mandatory fields on the destination; all such fields must have the field mapping specified."
+                   Margin="0,7,0,0"
+                   Grid.Row="2"
+                   TextWrapping="Wrap"/>
+
+                <TextBlock Text="+ Fields with values that are auto-generated by the server. The values corresponding to these fields will not be migrated."
+                   Margin="0,5,0,0"
+                   Grid.Row="3"
+                   TextWrapping="Wrap"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="0,20,0,10"
+              Visibility="{Binding IsTestSuiteVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Separator VerticalAlignment="Center"/>
+                <Border Background="{DynamicResource WizardPageBackgroundColor}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                    <TextBlock Text="Test suites"
+                           Padding="3,0,3,0"
+                           VerticalAlignment="Center" />
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="10,7,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="Test suites that test case belongs to:" />
+                <ComboBox Grid.Column="1"
+                              Margin="5,0,0,0"
+                              ItemsSource="{Binding TestSuiteAvailableFields}"
+                              SelectedItem="{Binding TestSuiteField}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentControl>

@@ -1,0 +1,305 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+
+    <!-- ===================================== Converter ======================================= -->
+
+    <WorkItemMigrator:StringToBoolConverter x:Key="StringToBoolConverter" />
+    <WorkItemMigrator:NotNullToBoolConverter x:Key="NotNullToBoolConverter" />
+
+    <!-- ===================================== Images ======================================= -->
+    <BitmapImage x:Key="Excel_32"
+                 UriSource="Images\Excel_32.png" />
+    <BitmapImage x:Key="Word_32"
+                 UriSource="Images\Word_32.png" />
+    <BitmapImage x:Key="Bullet_16"
+                 UriSource="Images\bullet_16.png" />
+    <BitmapImage x:Key="Stop_16"
+                 UriSource="Images\Stop_16.png" />
+    <BitmapImage x:Key="Passed_16"
+                 UriSource="Images\Passed_16.png" />
+    <BitmapImage x:Key="Passed_32"
+                 UriSource="Images\Passed_32.png" />
+    <BitmapImage x:Key="Failed_16"
+                 UriSource="Images\Failed_16.png" />
+    <BitmapImage x:Key="Failed_32"
+                 UriSource="Images\Failed_32.png" />
+    <BitmapImage x:Key="Warning_16"
+                 UriSource="Images\Warning_16.png" />
+    <BitmapImage x:Key="Warning_32"
+                 UriSource="Images\Warning_32.png" />
+    <BitmapImage x:Key="Pending_16"
+                 UriSource="Images\Pending_16.png" />
+    <BitmapImage x:Key="InProgress_16"
+                 UriSource="Images\InProgress_16.png" />
+    <BitmapImage x:Key="InProgress_32"
+                 UriSource="Images\InProgress_32.png" />
+    <BitmapImage x:Key="ErrorIcon_32"
+                 UriSource="Images\error_32.ico" />
+    <BitmapImage x:Key="WarningIcon_32"
+                 UriSource="Images\warning_32.ico" />
+    <BitmapImage x:Key="InfoIcon_32"
+                 UriSource="Images\info_32.ico" />
+
+    <!-- ==================================== Colors ==================================== -->
+
+    <SolidColorBrush x:Key="HyperLinkBrush"
+                     Color="#FF0066CC" />
+
+    <SolidColorBrush x:Key="ItemBackgroundBrush"
+                     Color="#FF3399FF" />
+
+    <SolidColorBrush x:Key="WizardPageBackgroundColor"
+                     Color="#FFF0F0F0" />
+
+    <SolidColorBrush x:Key="WizardBackgroundColor"
+                     Color="#FFBAC7D8" />
+
+    <SolidColorBrush x:Key="NavigationPanelBorderColor"
+                     Color="#FFDFE1E7" />
+
+    <SolidColorBrush x:Key="WizardBorderBrush"
+                     Color="#FFA8B3C2" />
+
+    <SolidColorBrush x:Key="WizardPageOuterBorderBrush"
+                     Color="#AADFE1E7" />
+
+    <LinearGradientBrush x:Key="WizardBorderGradientBrush">
+        <GradientStop Offset="0" Color="Transparent"/>
+        <GradientStop Offset="0.4" Color="#FFA8B3C2"/>
+        <GradientStop Offset="0.6" Color="#FFA8B3C2"/>
+        <GradientStop Offset="1" Color="Transparent"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="NavigationPanelControlBackgroundColor">
+        <GradientStop Offset="0" Color="#FFF0F0F0"/>
+        <GradientStop Offset="0.8" Color="#FFDFE1E7"/>
+        <GradientStop Offset="1" Color="#AADFE1E7"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StatusBorderColor"  
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFA0A0A0"/>
+        <GradientStop Offset="1" Color="#FFC5C5C5"/>
+    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="StatusBackgroundColor"
+                     Color="#FFE1DBDB" />
+
+    <SolidColorBrush x:Key="WarningTextBackgroundColor"
+                     Color="#FFFFFFDF" />
+
+    <!-- ==================================== Text Block Styles ==================================== -->
+
+    <!-- Text Block Default Style -->
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="Black" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}}"
+                             Value="False">
+                <Setter Property="Foreground" Value="Gray" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!-- ==================================== Button Styles ==================================== -->
+
+    <!-- Button Default Style -->
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Margin"
+                Value="5,0,5,0"/>
+        <Setter Property="Padding"
+                Value="10,3,10,3" />
+        <Setter Property="Foreground"
+                Value="Black" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="Gray" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NavigationButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="MinWidth"
+                Value="100" />
+    </Style>
+
+    <!-- ==================================== Text Box Style ==================================== -->
+
+    <!-- Text Box Default Style -->
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="Black" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" 
+                     Value="False">
+                <Setter Property="Foreground" Value="Gray" />                        
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="WatermarkingTextBox_Control"
+                     TargetType="{x:Type WorkItemMigrator:WITMigratorTextBox}">
+        <Border x:Name="WarterMarkingTextBoxBorder"
+                Background="White"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="{TemplateBinding Padding}">
+            <Grid>
+                <ScrollViewer  x:Name="PART_ContentHost" 
+                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                               VerticalAlignment="Center"/>
+                <TextBlock x:Name="WaterMark"
+                           Text="&lt;Required&gt;"
+                           Foreground="{TemplateBinding Foreground}"
+                           IsHitTestVisible="False"
+                           FontStyle="Italic"
+                           Visibility="Hidden"
+                           Opacity="0.4"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="1,0,0,0" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=ErrorArgs, Converter={StaticResource NotNullToBoolConverter}}"
+                         Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                 Path=IsRequired}"
+                                Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                 Path=IsFocused}"
+                               Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="WarterMarkingTextBoxBorder" Property="Background" Value="#FFFFAAAA" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                           Path=Text, Converter={StaticResource StringToBoolConverter}}"
+                                Value="False" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                 Path=IsRequired}"
+                                Value="True" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                 Path=IsFocused}"
+                               Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="WaterMark" Property="Visibility" Value="Visible" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                           Path=Text, Converter={StaticResource StringToBoolConverter}}"
+                                Value="False" />
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                 Path=IsRequired}"
+                                Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="WarterMarkingTextBoxBorder" Property="Background" Value="{DynamicResource WarningTextBackgroundColor}" />
+            </MultiDataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <Style TargetType="{x:Type WorkItemMigrator:WITMigratorTextBox}"
+           BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Template"
+                Value="{DynamicResource WatermarkingTextBox_Control}" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="LightGray" />
+    </Style>
+
+    <!-- ==================================== Combo Box Style ==================================== -->
+
+    <!-- ComboBox Popup -->
+    <Style x:Key="PageComboBoxPopupStyle"
+           TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Opacity"
+                Value="1" />
+        <Setter Property="Background"
+                Value="{DynamicResource PagePopupBackgroundBrush}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource PagePopupBorderBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type ComboBoxItem}"
+           BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border Name="Border"
+                            SnapsToDevicePixels="True"
+                            Padding="2,2,2,2">
+                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource ItemBackgroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ==================================== Items Panel Style ==================================== -->
+    <ItemsPanelTemplate x:Key="HorizontalItemsPanelStyle">
+        <StackPanel Orientation="Horizontal"/>
+    </ItemsPanelTemplate>
+
+
+    <!-- ==================================== Data Grid Style ==================================== -->
+
+    <Style x:Key="DataGridHeaderTextStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock TextTrimming="CharacterEllipsis"
+                               Text="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type DataGridColumnHeader}}}"
+                               ToolTip="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type DataGridColumnHeader}}}"
+                               FontWeight="Bold">
+                    </TextBlock>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridRow}"
+           x:Key="DataGridRowStyle"
+           BasedOn="{StaticResource {x:Type DataGridRow}}">
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True" >
+                <Setter Property="Background" Value="{DynamicResource ItemBackgroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ==================================== Message Box Styles ==================================== -->
+
+    <Style x:Key="MessageBox_Button"
+               TargetType="{x:Type Button}"
+               BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin"
+                    Value="0,0,5,0" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="MinWidth"
+                    Value="60" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,183 @@
+﻿<ContentControl x:Class="Microsoft.VisualStudio.TestTools.WorkItemMigrator.MiscSettingsView"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:WorkItemMigrator="clr-namespace:Microsoft.VisualStudio.TestTools.WorkItemMigrator"
+                                 x:ClassModifier="internal">
+    <ContentControl.Resources>
+        <WorkItemMigrator:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </ContentControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="10,10,30,0"
+              Grid.Row="0"
+              Visibility="{Binding AreMiscSettingsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    VerticalAlignment="Top"
+                    Padding="25">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <CheckBox AutomationProperties.AutomationId="MiscSettingsView.MultiLineSenseCheckBox"
+                              AutomationProperties.Name="MultiLineSenseCheckBox"
+                              Grid.Row="0"
+                              x:Uid="MiscSettingsView.MultiLineSenseCheckBox"
+                              IsChecked="{Binding IsMultiLineSenseEnabled}">
+                        Multiple test steps are present in single cell separated by new line character(\n)
+                    </CheckBox>
+
+                    <CheckBox AutomationProperties.AutomationId="MiscSettingsView.ParameterizationCheckBox"
+                              AutomationProperties.Name="ParameterizationCheckBox"
+                              x:Uid="MiscSettingsView.ParameterizationCheckBox"
+                              Margin="0,20,0,0"
+                              Grid.Row="1"
+                              x:Name="ParameterizationCheckbox"
+                              IsChecked="{Binding IsParameterizationChecked}">
+                        Parse parameters present in test steps with following delimeters:
+                    </CheckBox>
+
+                    <Grid Grid.Row="2"
+                          IsEnabled="{Binding ElementName=ParameterizationCheckbox, Path=IsChecked}"
+                          Margin="20,3,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock x:Uid="StartDelimeter"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="0"
+                                   Text="Start Delimeter:" />
+                        <TextBox x:Uid="MiscSettingsView.StartParameterizationDelimeter"
+                                 AutomationProperties.AutomationId="MiscSettingsView.StartParameterizationDelimeter"
+                                 AutomationProperties.Name="StartParameterizationDelimeter"
+                                 Grid.Column="1"
+                                 Width="30"
+                                 Margin="3,0,0,0"
+                                 Text="{Binding StartParameterizationDelimeter}" />
+
+                        <TextBlock x:Uid="EndDelimeter"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="2"
+                                   Margin="15,0,0,0"
+                                   Text="End Delimeter:" />
+                        <TextBox x:Uid="MiscSettingsView.EndParameterizationDelimeter"
+                                 AutomationProperties.AutomationId="MiscSettingsView.EndParameterizationDelimeter"
+                                 AutomationProperties.Name="EndParameterizationDelimeter"
+                                 Width="30"
+                                 Margin="3,0,0,0"
+                                 Grid.Column="3"
+                                 Text="{Binding EndParameterizationDelimeter}" />
+                    </Grid>
+
+                    <TextBlock Grid.Row="3"
+                               Text="Example: @{john} from test step to extract 'john' as parameter where '@{' and '}' are start and end delimeters respectively."
+                               TextWrapping="Wrap"
+                               Margin="10,5,0,0" />
+
+                    <TextBlock Grid.Row="4"
+                               Text="Note: Each parameter parsed will be created as a separate column within the parameter table. Data for parameters is not migrated."
+                               TextWrapping="Wrap"
+                               Margin="10,6,0,0" />
+
+                </Grid>
+            </Border>
+
+            <Label x:Uid="MiscSettingsView.MiscSettingsLabel"
+                   Margin="10,-14,0,0"
+                   HorizontalAlignment="Left"
+                   Background="{DynamicResource WizardPageBackgroundColor}"
+                   VerticalAlignment="Top">
+                Miscellaneous settings for Test Steps
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="25,30,50,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       x:Uid="OutputMappingsFileText"
+                       Margin="0,0,0,5"
+                       TextWrapping="Wrap"
+                       Text="Save mappings(fields, data and links) and miscellaneous settings to this file location:" />
+
+            <TextBox AutomationProperties.AutomationId="MiscSettingsView.OutputMappingsFileTextBox"
+                     AutomationProperties.Name="OutputMappingsFileTextBox"
+                     x:Uid="MiscSettingsView.OutputMappingsFileTextBox"
+                     IsReadOnly="True"
+                     Foreground="Gray"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Text="{Binding OutputMappingsFile}" />
+
+            <Button AutomationProperties.AutomationId="MiscSettingsView.OutputMappingsFileBrowseButton"
+                    AutomationProperties.Name="OutputMappingsFileBrowseButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="_..."
+                    x:Name="OutputMappingsFileBrowseButton"
+                    Click="SaveFileBrowseButton_Click" />
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Margin="25,30,50,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       Margin="0,0,0,5"
+                       TextWrapping="Wrap"
+                       x:Uid="OutputFileText"
+                       Text="Save log files to the following location:" />
+
+            <TextBox AutomationProperties.AutomationId="MiscSettingsView.ReportFolderTextBox"
+                     AutomationProperties.Name="ReportFolderTextBox"
+                     x:Uid="MiscSettingsView.ReportFolderTextBox"
+                     Grid.Row="1"
+                     IsReadOnly="True"
+                     Grid.Column="0"
+                     Foreground="Gray"
+                     Text="{Binding ReportFolder}" />
+
+            <Button AutomationProperties.AutomationId="MiscSettingsView.ReportFolderBrowseButton"
+                    AutomationProperties.Name="ReportFolderBrowseButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="_..."
+                    x:Name="ReportFolderBrowseButton"
+                    Click="SaveReportFolderBrowseButton_Click" />
+        </Grid>
+    </Grid>
+</ContentControl>
