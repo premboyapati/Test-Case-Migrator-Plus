@@ -21,7 +21,8 @@ Test Case Migrator Plus tool allows test related artifacts, present in Excel and
 # Story behind bringing this code from Codeplex to GitHub
 QA team in my company always uses **Test case migrator tool** to import test cases from _Excel to TFS_. It was a _perfect tool_ for our QA team to load test case to TFS when my company using TFS 2010/2012.
 
-TCM import tool suddenly **stopped** working when my company upgraded to Azure Devops. QA team was trying to resolve the issue themselves, talking to people in Microsoft/other forums. They **spent** months but **no luck**. And also they were waiting for **Microsoft** (_My team told me Microsoft is still working on upgrading this tool_) to release new version which works with TFS 2017+.
+TCM import tool suddenly **stopped** working when my company upgraded to Azure Devops. QA team was trying to resolve the issue themselves, talking to people in Microsoft/other forums. 
+They **spent** months but **no luck**. And also they were waiting for **Microsoft** (_My team told me Microsoft is still working on upgrading this tool_) to release new version which works with TFS 2017+.
 
 As a last hope they came to me asking help to upgrade this TCM import tool to make it work with Azure DEVOps.
 
