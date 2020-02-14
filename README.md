@@ -27,7 +27,7 @@ They **spent** months but **no luck**. And also they were waiting for **Microsof
 As a last hope they came to me asking help to upgrade this TCM import tool to make it work with Azure DEVOps.
 </p>
 <br /><br /><br />
-I wanted to help them by **sharing **updated binaries by downloading patches and source code from Codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/"
+I wanted to help them by **sharing ** updated binaries by downloading patches and source code from Codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/"
 
 But **no luck** for me with the above Url, it always **redirects **to archives folder, that is when I decided to **upgrade **the source code using **.Net framework 4.6.1** to make it to work with **TFS 2017+.**
 
