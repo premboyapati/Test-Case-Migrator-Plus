@@ -1,4 +1,3 @@
-
 _No changes to the license, Microsoft public license._
 
 Test Case Migrator Plus tool allows test related artifacts, present in Excel and MHT/Word formats, to be imported into Team Foundation Server. It works with both _Visual studio 2017, Visual studio 2019; and TFS 2017, TFS 2018 and Azure DevOps Server 2019.1 & 2019.1_
@@ -28,7 +27,7 @@ They **spent** months but **no luck**. And also they were waiting for **Microsof
 As a last hope they came to me asking help to upgrade this TCM import tool to make it work with Azure DEVOps.
 </p>
 <br /><br /><br />
-I wanted to help them by **sharing ** updated binaries by downloading patches and source code from Codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/".
+I wanted to help them by **sharing **updated binaries by downloading patches and source code from Codeplex "https://www.sharepointpals.com/post/how-to-migrate-the-test-cases-from-an-excel-to-tfs/"
 
 But **no luck** for me with the above Url, it always **redirects **to archives folder, that is when I decided to **upgrade **the source code using **.Net framework 4.6.1** to make it to work with **TFS 2017+.**
 
@@ -38,5 +37,7 @@ After upgrading TCM import source code with .Net4.6.1, build is **not **compiled
 Now, my team and other QA teams in my company are pretty happy (_I would say there are on cloud nine :)_ ) with this updated binaries. And that's when my team asked me to u_**pload this binaries and source code**_ to GitHub to share with the **QA world** to use it in your day to day job.
 
 Please [downlaod](https://github.com/premboyapati/Test-Case-Migrator-Plus/tree/master/Binaries) the binaries and use the tool.
+
+And also do not forget to refer to the [Test case instructions document](https://github.com/premboyapati/Test-Case-Migrator-Plus/blob/master/Test%20Cases%20Upload%20Process.doc)
 
 _I or my team or GitHub or Microsoft is not responsible for any issues if you face while using this product.You are sole responsible in using this product. My role ends in getting the code from Codeplex and converting it to make it work with TFS 2017+_
